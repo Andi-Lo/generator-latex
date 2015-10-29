@@ -9,16 +9,21 @@ describe('generator latex:app', function () {
   before(function (done) {
     helpers.run(path.join(__dirname, '../generators/app'))
       .withOptions({ skipInstall: true })
-      .withPrompts({ someOption: true })
+      .withPrompts({
+        projectName: this.appname,
+        coverSheet: true,
+        bibtex: true
+      })
       .on('end', done);
   });
 
   it('creates files', function () {
     assert.file([
-      'bower.json',
-      'package.json',
-      '.editorconfig',
-      '.jshintrc'
+      'main.tex',
+      'section.tex',
+      'cites.bib',
+      'coversheet/coversheet.tex',
+      'coversheet/images/logo.png'
     ]);
   });
 });

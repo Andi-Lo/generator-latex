@@ -1,7 +1,7 @@
 {
   "name": "generator-generator-latex",
-  "version": "0.0.0",
-  "description": "Yeoman generator",
+  "version": "1.0.0",
+  "description": "A Yeoman generator for Latex",
   "license": "MIT",
   "main": "app/index.js",
   "repository": "Andi-Lo/generator-generator-latex",

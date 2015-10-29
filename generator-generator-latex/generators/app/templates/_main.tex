@@ -17,12 +17,12 @@
 \usepackage{longtable}
 \usepackage{array}
 \usepackage{fancyhdr}
-\addbibresource{sections/zitate.bib}
+\addbibresource{cites.bib}
 \pagestyle{empty}
 \author{Placeholder}
 
 \graphicspath{{images/}
-}\setlength{\parindent}{0ex}  	% Absatzeinrueckung verhindern
+}\setlength{\parindent}{0ex}
 
 \definecolor{materialGrey}{rgb}{0.27,0.27,0.27}
 \definecolor{materialGreen}{rgb}{0.0, 0.8, 0.6}
@@ -57,6 +57,7 @@
     framerule=0pt
   }
 
+% code listing support for javascript language
 \lstdefinelanguage{JavaScript}{
   keywords={typeof, new, true, false, catch, function, return, null, catch, switch, var, if, in, while, do, else, case, break, length},
   keywordstyle=\color{materialBlue}\bfseries,
@@ -103,8 +104,7 @@
   \newcommand{\headline}{Headline}
   \newcommand{\subheadline}{Subheadline}
   \newcommand{\subsubheadline}{SubsubHeadline}
-	\input{../deckblatt/deckblatt.tex}
-  % \input{../deckblatt/logo.tex}
+	\input{coversheet/coversheet.tex}
 
 	%Inhaltsverzeichnis
   \thispagestyle{empty}

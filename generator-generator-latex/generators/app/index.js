@@ -22,63 +22,64 @@ module.exports = yeoman.generators.Base.extend({
       name: 'features',
       message: 'What would you like to have?',
       choices: [{
-        name: 'Cover Sheet',
-        value: 'coverSheet',
+        name: 'coversheet',
+        value: 'Cover Sheet',
         checked: true
       }, {
-        name: 'Bibtex',
-        value: 'bibtex',
+        name: 'bibtex',
+        value: 'Bibtex',
         checked: true
       }]
     }];
 
     this.prompt(prompts, function (props) {
       this.props = props;
-      var features = props.features;
+      // var features = props.features;
       // To access props later use this.props.someOption;
        
-      var hasFeature = function(feature) {
-        return features.indexOf(feature) !== -1;
-      };
+      // var hasFeature = function(feature) {
+      //   return features.indexOf(feature) !== -1;
+      // };
       
-      this.coverSheet = hasFeature('coverSheet');
-      this.bibtex = hasFeature('bibtex');
+      // this.coversheet = hasFeature('coversheet');
+      // this.bibtex = hasFeature('bibtex');
+      
+      this.coverSheet = props.coversheet;
+      this.bibtex = props.bibtex;
 
       done();
     }.bind(this));
   },
 
   writing: {
+    makeDirs: function () {
+      this.mkdir('images');
+    },
     texFiles: function () {
       this.fs.copy(
         this.templatePath('_main.tex'),
-        this.destinationPath('main.tex'),
+        this.destinationPath('main.tex')
       );
       this.fs.copy(
         this.templatePath('_section.tex'),
-        this.destinationPath('section.tex'),
+        this.destinationPath('section.tex')
       );
       this.fs.copy(
         this.templatePath('_cites.bib'),
-        this.destinationPath('cites.bib'),
+        this.destinationPath('cites.bib')
       );
-    },
-
-    makeDirs: function () {
-      this.mkdir('../coversheet/images');
-      this.mkdir('images');
-      // this.fs.copy(
-      //   this.templatePath('editorconfig'),
-      //   this.destinationPath('.editorconfig')
-      // );
-      // this.fs.copy(
-      //   this.templatePath('jshintrc'),
-      //   this.destinationPath('.jshintrc')
-      // );
+      this.fs.copy(
+        this.templatePath('_coversheet.tex'),
+        this.destinationPath('coversheet/coversheet.tex')
+      );
+      this.fs.copy(
+        this.templatePath('_logo.png'),
+        this.destinationPath('coversheet/images/logo.png')
+      );
     }
   },
 
-  install: function () {
-    this.installDependencies();
-  }
+  // install: function () {
+  //   this.installDependencies();
+  // }
 });

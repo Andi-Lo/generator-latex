@@ -14,40 +14,67 @@ module.exports = yeoman.generators.Base.extend({
 
     var prompts = [{
       type: 'input',
-      name: 'coverSheet',
-      message: 'Would you like to have a cover sheet?',
-      default: true
+      name: 'projectName',
+      message: 'Please, tell me the name of your article',
+      default: this.appname
+      }, {
+      type: 'checkbox',
+      name: 'features',
+      message: 'What would you like to have?',
+      choices: [{
+        name: 'Cover Sheet',
+        value: 'coverSheet',
+        checked: true
+      }, {
+        name: 'Bibtex',
+        value: 'bibtex',
+        checked: true
+      }]
     }];
 
     this.prompt(prompts, function (props) {
       this.props = props;
+      var features = props.features;
       // To access props later use this.props.someOption;
+       
+      var hasFeature = function(feature) {
+        return features.indexOf(feature) !== -1;
+      };
+      
+      this.coverSheet = hasFeature('coverSheet');
+      this.bibtex = hasFeature('bibtex');
 
       done();
     }.bind(this));
   },
 
   writing: {
-    app: function () {
+    texFiles: function () {
       this.fs.copy(
-        this.templatePath('_package.json'),
-        this.destinationPath('package.json')
+        this.templatePath('_main.tex'),
+        this.destinationPath('main.tex'),
       );
       this.fs.copy(
-        this.templatePath('_bower.json'),
-        this.destinationPath('bower.json')
+        this.templatePath('_section.tex'),
+        this.destinationPath('section.tex'),
+      );
+      this.fs.copy(
+        this.templatePath('_cites.bib'),
+        this.destinationPath('cites.bib'),
       );
     },
 
-    projectfiles: function () {
-      this.fs.copy(
-        this.templatePath('editorconfig'),
-        this.destinationPath('.editorconfig')
-      );
-      this.fs.copy(
-        this.templatePath('jshintrc'),
-        this.destinationPath('.jshintrc')
-      );
+    makeDirs: function () {
+      this.mkdir('../coversheet/images');
+      this.mkdir('images');
+      // this.fs.copy(
+      //   this.templatePath('editorconfig'),
+      //   this.destinationPath('.editorconfig')
+      // );
+      // this.fs.copy(
+      //   this.templatePath('jshintrc'),
+      //   this.destinationPath('.jshintrc')
+      // );
     }
   },
 

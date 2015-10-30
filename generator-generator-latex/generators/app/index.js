@@ -13,39 +13,72 @@ module.exports = yeoman.generators.Base.extend({
     ));
 
     var prompts = [{
+        type: 'input',
+        name: 'author',
+        message: 'Authors name?'
+      },{
       type: 'input',
       name: 'projectName',
-      message: 'Please, tell me the name of your article',
+      message: 'Title of your Paper',
       default: this.appname
-      }, {
+      },{
+        type: 'input',
+        name: 'subheadline',
+        message: 'Enter a subtitle',
+        default: 'Subtitle'
+      },{
+        type: 'rawlist',
+        name: 'languages',
+        message: 'Chose your Latex language',
+        choices: [{
+          name: 'German',
+          value: 'setGerman',
+          default: true
+        },{
+          name: 'English',
+          value: 'setEnglish',
+          default: false
+        }]
+      },{
       type: 'checkbox',
       name: 'features',
-      message: 'What would you like to have?',
+      message: 'What extras would you like to have?',
       choices: [{
-        name: 'coversheet',
-        value: 'Cover Sheet',
+        name: 'Create cover sheet',
+        value: 'coversheet',
         checked: true
       }, {
-        name: 'bibtex',
-        value: 'Bibtex',
+        name: 'Include a Bibtex file',
+        value: 'bibtex',
         checked: true
+      },{
+        name: 'Include an affidavit section (Eidenstaatliche Erklärung)',
+        value: 'affidavit',
+        checked: false
       }]
     }];
 
     this.prompt(prompts, function (props) {
       this.props = props;
-      // var features = props.features;
-      // To access props later use this.props.someOption;
+      this.author = props.author;
+      this.subheadline = props.subheadline;
+      this.projectName = props.projectName;
+      var features = props.features;
+      var languages = props.languages;
        
-      // var hasFeature = function(feature) {
-      //   return features.indexOf(feature) !== -1;
-      // };
+      var hasFeature = function(feature) {
+        return features.indexOf(feature) !== -1;
+      };
+      var hasLanguage = function(language) {
+        return languages.indexOf(language) !== -1;
+      };
       
-      // this.coversheet = hasFeature('coversheet');
-      // this.bibtex = hasFeature('bibtex');
+      this.includeCoversheet = hasFeature('coversheet');
+      this.includeBibtex = hasFeature('bibtex');
+      this.includeAffidavit = hasFeature('affidavit');
       
-      this.coverSheet = props.coversheet;
-      this.bibtex = props.bibtex;
+      this.setGerman = hasLanguage('German');
+      this.setEnglish = hasLanguage('English');
 
       done();
     }.bind(this));
@@ -56,25 +89,56 @@ module.exports = yeoman.generators.Base.extend({
       this.mkdir('images');
     },
     texFiles: function () {
-      this.fs.copy(
+      this.fs.copyTpl(
         this.templatePath('_main.tex'),
-        this.destinationPath('main.tex')
+        this.destinationPath('main.tex'),
+        { author: this.author,
+          projectName: this.projectName,
+          subheadline: this.subheadline,
+          english: this.setEnglish,
+          german: this.setGerman,
+          includeAffidavit: this.includeAffidavit
+        }
       );
-      this.fs.copy(
+      if(this.includeAffidavit){
+        this.fs.copyTpl(
+          this.templatePath('_affidavit.tex'),
+          this.destinationPath('affidavit.tex'),
+          {
+            english: this.setEnglish,
+            german: this.setGerman,
+          }
+        );
+      }
+      if(this.includeBibtex) {
+        this.fs.copy(
+          this.templatePath('_cites.bib'),
+          this.destinationPath('cites.bib')
+        );
+      }
+      this.fs.copyTpl(
         this.templatePath('_section.tex'),
-        this.destinationPath('section.tex')
+        this.destinationPath('section.tex'),
+        {
+          english: this.setEnglish,
+          german: this.setGerman,
+        }
       );
-      this.fs.copy(
-        this.templatePath('_cites.bib'),
-        this.destinationPath('cites.bib')
-      );
-      this.fs.copy(
-        this.templatePath('_coversheet.tex'),
-        this.destinationPath('coversheet/coversheet.tex')
-      );
+      if(this.includeCoversheet) {
+        this.fs.copyTpl(
+          this.templatePath('_coversheet.tex'),
+          this.destinationPath('coversheet/coversheet.tex'),
+          { author: this.author,
+            projectName: this.projectName,
+            subheadline: this.subheadline,
+            english: this.setEnglish,
+            german: this.setGerman
+          }
+        );
+      }
       this.fs.copy(
         this.templatePath('_logo.png'),
-        this.destinationPath('coversheet/images/logo.png')
+        this.destinationPath('coversheet/images/dummyLogo.png')
       );
     }
   },

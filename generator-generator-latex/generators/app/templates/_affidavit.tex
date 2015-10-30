@@ -1,0 +1,16 @@
+\begin{newpage}
+	% \hline
+	\vspace*{\fill}
+	\section*{<% if (german) { %>Eidesstattliche Erklärung <% } else { %>Affidativ<% } %>}
+	<% if (german) { %>Hiermit versichere ich, die vorliegende Arbeit selbstständig und unter ausschließlicher Verwendung der angegebenen Literatur und Hilfsmittel erstellt zu haben. Die Arbeit wurde bisher, in gleicher oder ähnlicher Form, keiner anderen Prüfungsbehörde vorgelegt und auch nicht veröffentlicht.\\<% } else { %><% } %>
+
+	\vspace{3cm}
+	\begin{tabular*}{\textwidth}{c@{\extracolsep\fill}cc}
+	\cline{1-1}
+	\cline{3-3}
+	\\
+	\ \ \ \ \ \ \ \ \ <% if (german) { %>Unterschrift <% } else { %>Signature<% } %>\ \ \ \ \ \ \ \ \ \ & & \ \ \ \ \ \ \ \ \ <% if (german) { %>Ort, Datum <% } else { %>Date<% } %>\ \ \ \ \ \ \ \ \ \\
+	\end{tabular*}
+\end{newpage}
+
+\newpage

@@ -8,7 +8,7 @@
 \usepackage{csquotes}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
-\usepackage[ngerman]{babel}
+<% if (german) { %>\usepackage[ngerman]{babel}<% } %><% if (english) { %>\usepackage[english]{babel}<% } %>
 \usepackage{color}
 \usepackage{hyperref}
 \usepackage{pdflscape}
@@ -19,7 +19,7 @@
 \usepackage{fancyhdr}
 \addbibresource{cites.bib}
 \pagestyle{empty}
-\author{Placeholder}
+\author{<%= author %>}
 
 \graphicspath{{images/}
 }\setlength{\parindent}{0ex}
@@ -100,24 +100,24 @@
     {8}{{{\color{materialYellow}8}}}1
     {9}{{{\color{materialYellow}9}}}1
 }
-	%Deckblatt
-  \newcommand{\headline}{Headline}
-  \newcommand{\subheadline}{Subheadline}
-  \newcommand{\subsubheadline}{SubsubHeadline}
+	%Coversheet
+  \newcommand{\headline}{<%= projectName %>}
+  \newcommand{\subheadline}{<%= subheadline %>}
 	\input{coversheet/coversheet.tex}
 
-	%Inhaltsverzeichnis
+	%Table of contents
   \thispagestyle{empty}
 	\tableofcontents 
   \clearpage
   \pagestyle{fancy}
   \fancyhf{}
   % \rhead{}
-  \lhead{Headline}
+  \lhead{<%= subheadline %>}
   \rfoot{\thepage}
   \renewcommand{\headrulewidth}{0.4pt}
   \renewcommand{\footrulewidth}{0.4pt}
 
+  <% if (includeAffidavit) { %>\input{affidavit.tex}<% } %>
   \input{section.tex}
 	\pagebreak
 

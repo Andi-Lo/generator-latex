@@ -11,8 +11,10 @@ describe('generator latex:app', function () {
       .withOptions({ skipInstall: true })
       .withPrompts({
         projectName: this.appname,
-        coverSheet: true,
-        bibtex: true
+        author: 'Awesome Author',
+        subheadline: 'Some awesome Headline',
+        languages: 'German',
+        features: ['coversheet', 'bibtex', 'affidavit']
       })
       .on('end', done);
   });
@@ -22,8 +24,9 @@ describe('generator latex:app', function () {
       'main.tex',
       'section.tex',
       'cites.bib',
+      'affidavit.tex',
       'coversheet/coversheet.tex',
-      'coversheet/images/logo.png'
+      'coversheet/images/dummyLogo.png'
     ]);
   });
 });

@@ -4,7 +4,7 @@
   "description": "A Yeoman generator for Latex",
   "license": "MIT",
   "main": "app/index.js",
-  "repository": "Andi-Lo/generator-generator-latex",
+  "repository": "Andi-Lo/generator-latex",
   "author": {
     "name": "Andreas Lorer",
     "email": "contact@andreaslorer.de",

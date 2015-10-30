@@ -1,5 +1,5 @@
 {
-  "name": "generator-generator-latex",
+  "name": "generator-latex",
   "version": "1.0.0",
   "description": "A Yeoman generator for Latex",
   "license": "MIT",

@@ -1,4 +1,4 @@
-# generator-latex-simple [![Build Status](https://secure.travis-ci.org/Andi-Lo/generator-latex-simple.png?branch=master)](https://travis-ci.org/Andi-Lo/generator-latex-simple)
+# generator-latex-simple [![Build Status](https://secure.travis-ci.org/Andi-Lo/generator-latex.png?branch=master)](https://travis-ci.org/Andi-Lo/generator-latex)
 
 ## About
 

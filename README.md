@@ -1,4 +1,4 @@
-# generator-generator-latex [![Build Status](https://secure.travis-ci.org/Andi-Lo/generator-generator-latex.png?branch=master)](https://travis-ci.org/Andi-Lo/generator-generator-latex)
+# generator-latex-simple [![Build Status](https://secure.travis-ci.org/Andi-Lo/generator-latex-simple.png?branch=master)](https://travis-ci.org/Andi-Lo/generator-latex-simple)
 
 ## About
 
@@ -23,14 +23,14 @@ npm install -g yo
 
 You can think of a generator like a plug-in. You get to choose what type of application you wish to create, such as an App application or even a Chrome extension.
 
-To install generator-generator-latex from npm, run:
+To install generator-latex-simple from npm, run:
 
 ```bash
-npm install -g generator-generator-latex
+npm install -g generator-latex-simple
 ```
 
 Finally, initiate the generator:
 
 ```bash
-yo generator latex
+yo generator latex-simple
 ```

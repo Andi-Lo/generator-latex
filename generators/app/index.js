@@ -118,7 +118,7 @@ module.exports = yeoman.generators.Base.extend({
       }
       this.fs.copyTpl(
         this.templatePath('_section.tex'),
-        this.destinationPath('section.tex'),
+        this.destinationPath('sections/section.tex'),
         {
           english: this.setEnglish,
           german: this.setGerman,

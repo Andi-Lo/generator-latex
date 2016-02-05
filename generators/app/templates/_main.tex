@@ -2,12 +2,12 @@
 \usepackage[left=2.5cm,right=2.5cm,top=2.5cm]{geometry}
 \usepackage[hyphens]{url}
 \usepackage[backend=biber,style=alphabetic,backref=true,citecounter=true,citestyle=authoryear]{biblatex}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
 \usepackage{csquotes}
 \usepackage{hyperref}
 \usepackage{setspace}
 \usepackage{csquotes}
-\usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}
 <% if (german) { %>\usepackage[ngerman]{babel}<% } %><% if (english) { %>\usepackage[english]{babel}<% } %>
 \usepackage{color}
 \usepackage{hyperref}
@@ -118,7 +118,7 @@
   \renewcommand{\footrulewidth}{0.4pt}
 
   <% if (includeAffidavit) { %>\input{affidavit.tex}<% } %>
-  \input{section.tex}
+  \input{sections/section.tex}
 	\pagebreak
 
 	\printbibliography

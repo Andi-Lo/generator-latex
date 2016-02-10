@@ -22,7 +22,7 @@ describe('generator latex:app', function () {
   it('creates files', function () {
     assert.file([
       'main.tex',
-      'section.tex',
+      'sections/section.tex',
       'cites.bib',
       'affidavit.tex',
       'coversheet/coversheet.tex',
